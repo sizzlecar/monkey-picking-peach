@@ -77,8 +77,6 @@ class Monkey(pygame.sprite.Sprite):
         for picked_apple in picked_apples:
             picked_apple.kill()
 
-        print('当前分数为:', self.apple_num)
-
 
 # 苹果类
 class Apple(pygame.sprite.Sprite):
@@ -99,7 +97,6 @@ class Apple(pygame.sprite.Sprite):
             global OVER_FLAG
             OVER_FLAG = True
             self.kill()
-            print('游戏结束！')
 
 
 # 初始化游戏
@@ -125,7 +122,6 @@ score_font = pygame.font.SysFont("arial", 40)
 while True:
 
     if OVER_FLAG:
-        print('游戏结束!')
         break
 
     # 控制游戏最大帧率
@@ -184,13 +180,13 @@ while True:
         offset[pygame.K_UP] = 0
     monkey.move(offset)
 
-# 更新分数
+# 游戏结束推出界面
 score_surface = score_font.render(str(monkey.apple_num), True, (0, 0, 255))
 over_surface = score_font.render(u"Game Over!", True, (0, 0, 255))
 screen.blit(background_surface, (0, 0))
 screen.blit(score_surface, (620, 10))
 screen.blit(over_surface, (250, 270))
-# 玩家坠毁后退出游戏
+
 while True:
 
     pygame.display.update()
